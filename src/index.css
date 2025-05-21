@@ -1,0 +1,91 @@
+:root {
+  /* Tipografía */
+  --font-heading: 'Playfair Display', serif;
+  /* --font-body: 'Cormorant Garamond', serif; */
+
+  /* Colores principales */
+  --color-primary: #ff77bf; 
+
+  --color-secondary: #2C1810;
+  --color-header-footer: #fff;
+  
+  /* Acentos */
+  --color-accent: #ffb7ed;
+  --color-accent-dark: #8E4E57;
+  
+  /* Neutros */
+  --color-background: #FDF6F7;
+  --color-text: #2C1810;
+  --color-white: #fff;
+  
+  /* Overlay y sombras */
+  --color-overlay: rgba(44, 24, 16, 0.4);
+  --shadow-soft: 0 4px 15px rgba(183, 110, 121, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-heading);
+  /* font-style: italic; */
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.6;
+  color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 3.5rem;
+  font-style: italic;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-style: italic;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+button, .cta-button {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Estilos para las secciones */
+section {
+  position: relative;
+  padding: 5rem 0;
+  background-color: var(--color-white);
+}
+
+/* Box shadow sutil entre secciones */
+section:not(:first-of-type) {
+  box-shadow: 0 -10px 20px -5px rgba(183, 110, 121, 0.05);
+}
+
+/* Box shadow inferior para la última sección */
+section:last-of-type {
+  box-shadow: 
+    0 -10px 20px -5px rgba(183, 110, 121, 0.05),
+    0 10px 20px -5px rgba(183, 110, 121, 0.05);
+}
