@@ -1,4 +1,3 @@
-import  { lazy, Suspense } from 'react'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import Header from './Components/Layout/Header'
@@ -6,101 +5,32 @@ import Footer from './Components/Layout/Footer'
 import { MotionPage } from './Components/Animation/PageTransition'
 import ScrollToCenter from './Components/Animation/ScrollToCenter'
 import WhatsAppButton from './Components/Layout/WhatsAppButton'
+import Hero from './Components/Layout/Sections/Hero'
+import Services from './Components/Layout/Sections/Services'
+import About from './Components/Layout/Sections/About'
+import Gallery from './Components/Layout/Sections/Gallery'
+import Testimonials from './Components/Layout/Sections/Testimonials'
+import Contact from './Components/Layout/Sections/Contact'
+
 // Las constantes se utilizan directamente en WhatsAppButton
 
-// Lazy load components, componente para mejorar el rendimiento 
-const Hero = lazy(() => import('./Components/Layout/Sections/Hero'))
-const Services = lazy(() => import('./Components/Layout/Sections/Services'))
-const About = lazy(() => import('./Components/Layout/Sections/About'))
-const Gallery = lazy(() => import('./Components/Layout/Sections/Gallery'))
-const Testimonials = lazy(() => import('./Components/Layout/Sections/Testimonials'))
-const Contact = lazy(() => import('./Components/Layout/Sections/Contact'))
+// Lazy load components, funcion de react para carga diferida, solo carga los componentes cuando se necesita
 
 // Componente de carga
-const LoadingFallback = () => (
-  <div style={{ 
-    display: 'flex', 
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    height: '100vh',
-    fontSize: '1.5rem',
-    color: 'var(--color-primary)'
-  }}>
-    Cargando...
-  </div>
-);
+
 
 const HomePage = () => (
   <MotionPage>
     <main>
-      <Suspense fallback={<LoadingFallback />}>
         <Hero />
         <Services />
         <About />
         <Gallery />
         <Testimonials />
         <Contact />
-      </Suspense>
     </main>
   </MotionPage>
 );
- 
-const AnimatedRoutes = () => {
-  const location = useLocation();
-  
-  return (
-    <AnimatePresence mode="out-in">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/servicios" element={
-          <MotionPage>
-            <ScrollToCenter>
-              <Suspense fallback={<LoadingFallback />}>
-                <Services />
-              </Suspense>
-            </ScrollToCenter>
-          </MotionPage>
-        } />
-        <Route path="/nosotros" element={
-          <MotionPage>
-            <ScrollToCenter>
-              <Suspense fallback={<LoadingFallback />}>
-                <About />
-              </Suspense>
-            </ScrollToCenter>
-          </MotionPage>
-        } />
-        <Route path="/galeria" element={
-          <MotionPage>
-            <ScrollToCenter>
-              <Suspense fallback={<LoadingFallback />}>
-                <Gallery />
-              </Suspense>
-            </ScrollToCenter>
-          </MotionPage>
-        } />
-        <Route path="/testimonios" element={
-          <MotionPage>
-            <ScrollToCenter>
-              <Suspense fallback={<LoadingFallback />}>
-                <Testimonials />
-              </Suspense>
-            </ScrollToCenter>
-          </MotionPage>
-        } />
-        <Route path="/contacto" element={
-          <MotionPage>
-            <ScrollToCenter>
-              <Suspense fallback={<LoadingFallback />}>
-                <Contact />
-              </Suspense>
-            </ScrollToCenter>
-          </MotionPage>
-        } />
-      </Routes>
-    </AnimatePresence>
-  );
-};
 
 function App() {
   return (
@@ -114,5 +44,54 @@ function App() {
     </Router>
   );
 }
+ 
+const AnimatedRoutes = () => {
+  const location = useLocation();
+  
+  return (
+    <AnimatePresence mode="out-in">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/servicios" element={
+          <MotionPage>
+            <ScrollToCenter>
+                <Services />
+            </ScrollToCenter>
+          </MotionPage>
+        } />
+        <Route path="/nosotros" element={
+          <MotionPage>
+            <ScrollToCenter>
+                <About />
+            </ScrollToCenter>
+          </MotionPage>
+        } />
+        <Route path="/galeria" element={
+          <MotionPage>
+            <ScrollToCenter>
+                <Gallery />
+            </ScrollToCenter>
+          </MotionPage>
+        } />
+        <Route path="/testimonios" element={
+          <MotionPage>
+            <ScrollToCenter>
+                <Testimonials />
+            </ScrollToCenter>
+          </MotionPage>
+        } />
+        <Route path="/contacto" element={
+          <MotionPage>
+            <ScrollToCenter>
+                <Contact />
+            </ScrollToCenter>
+          </MotionPage>
+        } />
+      </Routes>
+    </AnimatePresence>
+  );
+};
+
+
 
 export default App
