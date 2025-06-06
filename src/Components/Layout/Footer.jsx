@@ -35,8 +35,8 @@ const Footer = () => {
             <li><FaMapMarkerAlt /> Miguel Hidalgo y Costilla 442, Centro, 81200 Los Mochis, Sinaloa</li>
           </ul>
           <div className="social-links">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebook /></a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
+            <a href="https://www.facebook.com/profile.php?id=61555933306081" target="_blank" rel="noopener noreferrer"><FaFacebook /></a>
+            <a href="https://www.instagram.com/johanalomasalon" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
           </div>
         </div>
       </div>

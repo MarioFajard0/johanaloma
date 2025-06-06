@@ -1,7 +1,6 @@
 :root {
   /* Tipografía */
   --font-heading: 'Playfair Display', serif;
-  /* --font-body: 'Cormorant Garamond', serif; */
 
   /* Colores principales */
   --color-primary: #ff77bf; 
@@ -28,15 +27,13 @@
   padding: 0;
   box-sizing: border-box;
   font-family: var(--font-heading);
-  /* font-style: italic; */
 }
 
 body {
   margin: 0;
-  font-family: var(--font-body);
   font-size: 18px;
   line-height: 1.6;
-  color: #333;
+  color: var(--color-text);
 }
 
 h1, h2, h3, h4, h5, h6 {

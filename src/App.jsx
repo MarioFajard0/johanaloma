@@ -1,33 +1,60 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
-import { AnimatePresence } from 'framer-motion'
-import Header from './Components/Layout/Header'
-import Footer from './Components/Layout/Footer'
-import { MotionPage } from './Components/Animation/PageTransition'
-import ScrollToCenter from './Components/Animation/ScrollToCenter'
-import WhatsAppButton from './Components/Layout/WhatsAppButton'
-import Hero from './Components/Layout/Sections/Hero'
-import Services from './Components/Layout/Sections/Services'
-import About from './Components/Layout/Sections/About'
-import Gallery from './Components/Layout/Sections/Gallery'
-import Testimonials from './Components/Layout/Sections/Testimonials'
-import Contact from './Components/Layout/Sections/Contact'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import { lazy, Suspense } from "react";
+import Header from "./Components/Layout/Header";
+import Footer from "./Components/Layout/Footer";
+import { MotionPage } from "./Components/Animation/PageTransition";
+import ScrollToCenter from "./Components/Animation/ScrollToCenter";
+import WhatsAppButton from "./Components/Layout/WhatsAppButton";
+import "./Styles/LoadingFallback.css";
 
-// Las constantes se utilizan directamente en WhatsAppButton
+import Hero from "./Components/Layout/Sections/Hero";
 
-// Lazy load components, funcion de react para carga diferida, solo carga los componentes cuando se necesita
+// Lazy load para la carga diferida de componentes 
+const Services = lazy(() => import("./Components/Layout/Sections/Services"));
+const About = lazy(() => import("./Components/Layout/Sections/About"));
+const Gallery = lazy(() => import("./Components/Layout/Sections/Gallery"));
+const Testimonials = lazy(
+  () => import("./Components/Layout/Sections/Testimonials")
+);
+const Contact = lazy(() => import("./Components/Layout/Sections/Contact"));
 
-// Componente de carga
-
+// Loading fallback component
+const LoadingFallback = () => (
+  <div className="loading-fallback">
+    <div className="spinner" />
+  </div>
+);
 
 const HomePage = () => (
   <MotionPage>
     <main>
-        <Hero />
+      <Hero />
+
+      <Suspense fallback={<LoadingFallback />}>
         <Services />
+      </Suspense>
+
+      <Suspense fallback={<LoadingFallback />}>
         <About />
+      </Suspense>
+
+      <Suspense fallback={<LoadingFallback />}>
         <Gallery />
+      </Suspense>
+
+      <Suspense fallback={<LoadingFallback />}>
         <Testimonials />
+      </Suspense>
+
+      <Suspense fallback={<LoadingFallback />}>
         <Contact />
+      </Suspense>
     </main>
   </MotionPage>
 );
@@ -44,54 +71,44 @@ function App() {
     </Router>
   );
 }
- 
+
+// Componente para encapsular la estructura común de las rutas
+const PageWrapper = ({ Component }) => (
+  <MotionPage>
+    <ScrollToCenter>
+      <Suspense fallback={<LoadingFallback />}>
+        <Component />
+      </Suspense>
+    </ScrollToCenter>
+  </MotionPage>
+);
+
 const AnimatedRoutes = () => {
   const location = useLocation();
-  
+
+  // Definir las rutas en un array para mapearlas
+  const routes = [
+    { path: "/servicios", Component: Services },
+    { path: "/nosotros", Component: About },
+    { path: "/galeria", Component: Gallery },
+    { path: "/testimonios", Component: Testimonials },
+    { path: "/contacto", Component: Contact },
+  ];
+
   return (
     <AnimatePresence mode="out-in">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<HomePage />} />
-        <Route path="/servicios" element={
-          <MotionPage>
-            <ScrollToCenter>
-                <Services />
-            </ScrollToCenter>
-          </MotionPage>
-        } />
-        <Route path="/nosotros" element={
-          <MotionPage>
-            <ScrollToCenter>
-                <About />
-            </ScrollToCenter>
-          </MotionPage>
-        } />
-        <Route path="/galeria" element={
-          <MotionPage>
-            <ScrollToCenter>
-                <Gallery />
-            </ScrollToCenter>
-          </MotionPage>
-        } />
-        <Route path="/testimonios" element={
-          <MotionPage>
-            <ScrollToCenter>
-                <Testimonials />
-            </ScrollToCenter>
-          </MotionPage>
-        } />
-        <Route path="/contacto" element={
-          <MotionPage>
-            <ScrollToCenter>
-                <Contact />
-            </ScrollToCenter>
-          </MotionPage>
-        } />
+        {routes.map(({ path, Component }) => (
+          <Route
+            key={path}
+            path={path}
+            element={<PageWrapper Component={Component} />}
+          />
+        ))}
       </Routes>
     </AnimatePresence>
   );
 };
 
-
-
-export default App
+export default App;

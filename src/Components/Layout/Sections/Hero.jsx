@@ -1,11 +1,21 @@
 import '../../../Styles/Hero.css';
-import heroImage from '../../../assets/stringio.jpg';
+import heroImage from '../../../assets/boutique.webp';
 
+// Componente Hero optimizado para mejorar el LCP
 const Hero = () => {
   return (
     <section id="hero" className="hero">
       <div className="hero-background">
-        <img src={heroImage} alt="JohanaSalon Beauty" />
+        {/* Imagen directa con atributos optimizados para LCP */}
+        <img 
+          src={heroImage} 
+          alt="JohanaSalon Beauty" 
+          loading="eager" 
+          fetchPriority="high"
+          width="1920" 
+          height="1080" 
+          style={{ objectFit: 'cover', width: '100%', height: '100%', filter: 'brightness(0.5)' }}
+        />
       </div>
       <div className="hero-content">
         <h1>Belleza y Elegancia en JohanaSalon</h1>

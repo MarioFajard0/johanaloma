@@ -1,6 +1,7 @@
 import '../../../Styles/Gallery.css';
 import ScrollAnimation from '../../Animation/ScrollAnimation';
-import galleryImage1 from '../../../assets/stringio.jpg';
+import galleryImage1 from '../../../assets/background.webp';
+import OptimizedImage from '../../Utility/OptimizedImage';
 
 const Gallery = () => {
   // Temporalmente usando la misma imagen para demostración
@@ -27,7 +28,13 @@ const Gallery = () => {
             key={image.id} 
             delay={index * 0.1}
           >
-            <img src={image.src} alt={image.alt} />
+            <OptimizedImage 
+              src={image.src} 
+              alt={image.alt} 
+              className="gallery-image"
+              loading="lazy"
+              placeholderColor="#f8f4f2"
+            />
           </ScrollAnimation>
         ))}
       </div>
