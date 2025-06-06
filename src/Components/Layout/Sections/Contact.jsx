@@ -8,11 +8,10 @@ const Contact = () => {
   const [status, setStatus] = useState({ show: false, success: false, message: '' });
   const [emailError, setEmailError] = useState('');
 
-
   const [formData, setFormData] = useState({
-    nombre: '',
-    email: '',
-    mensaje: ''
+    user_name: '',
+    user_email: '',
+    message: ''
   });
 
   const validateEmail = (email) => {
@@ -48,7 +47,7 @@ const Contact = () => {
     e.preventDefault();
     
     // Validate email before submission
-    if (!validateEmail(formData.email)) {
+    if (!validateEmail(formData.user_email)) {
       setEmailError('Por favor ingresa un correo electrónico válido');
       return;
     }
@@ -66,9 +65,10 @@ const Contact = () => {
 
       if (result.status === 200) {
         showStatus(true, true, '¡Mensaje enviado con éxito! Te contactaremos pronto.');
-        setFormData({ nombre: '', email: '', mensaje: '' });
+        setFormData({ user_name: '', user_email: '', message: '' });
       }
-    } catch {
+    } catch (error) {
+      console.error('Error al enviar el formulario:', error);
       // Manejo silencioso del error, ya mostramos el mensaje al usuario
       showStatus(true, false, 'Hubo un error al enviar el mensaje. Por favor, intenta nuevamente.');
     } finally {
@@ -87,39 +87,39 @@ const Contact = () => {
           </div>
         )}
         <div className="form-group">
-          <label htmlFor="nombre">Nombre</label>
+          <label htmlFor="user_name">Nombre</label>
           <input
             type="text"
-            id="nombre"
-            name="nombre"
+            id="user_name"
+            name="user_name"
             placeholder="Tu nombre"
             required
-            value={formData.nombre}
+            value={formData.user_name}
             onChange={handleChange}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="user_email">Email</label>
           <input
             type="email"
-            id="email"
-            name="email"
+            id="user_email"
+            name="user_email"
             placeholder="Tu correo electrónico"
             required
-            value={formData.email}
+            value={formData.user_email}
             onChange={handleChange}
             className={emailError ? 'invalid-input' : ''}
           />
           {emailError && <div className="error-message">{emailError}</div>}
         </div>
         <div className="form-group">
-          <label htmlFor="mensaje">Mensaje</label>
+          <label htmlFor="message">Mensaje</label>
           <textarea
-            id="mensaje"
-            name="mensaje"
+            id="message"
+            name="message"
             placeholder="¿En qué podemos ayudarte?"
             required
-            value={formData.mensaje}
+            value={formData.message}
             onChange={handleChange}
           />
         </div>

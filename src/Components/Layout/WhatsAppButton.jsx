@@ -4,7 +4,7 @@ import '../../Styles/WhatsAppButton.css';
 
 import whatsappIcon from '../../assets/whatsapp-icon.svg';
 
-const WhatsAppButton = ({ phoneNumber = '6682332722', message = 'Hola, me gustaría obtener más información' }) => {
+const WhatsAppButton = ({ phoneNumber = '6682332722', message = 'Hola Johana Loma!, me gustaria reservar una cita ' }) => {
   // Formateamos el enlace de WhatsApp
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 

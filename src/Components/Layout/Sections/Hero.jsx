@@ -1,5 +1,5 @@
 import '../../../Styles/Hero.css';
-import heroImage from '../../../assets/boutique.webp';
+import heroImage from '../../../assets/interiorsalon.webp';
 
 // Componente Hero optimizado para mejorar el LCP
 const Hero = () => {

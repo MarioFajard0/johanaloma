@@ -1,19 +1,25 @@
 import '../../../Styles/Gallery.css';
 import ScrollAnimation from '../../Animation/ScrollAnimation';
-import galleryImage1 from '../../../assets/background.webp';
+import galleryImage1 from '../../../assets/unas-rosas2.webp';
+import galleryImage2 from '../../../assets/unas-doradas.webp';
+import galleryImage3 from '../../../assets/unas-tinto.webp';
+import galleryImage4 from '../../../assets/unas-nais.webp';
+import galleryImage5 from '../../../assets/cabello-1.webp';
+import galleryImage6 from '../../../assets/cabello-2.webp';
+import galleryImage7 from '../../../assets/cabello-3.webp';
+import galleryImage8 from '../../../assets/pestanas-1.webp';
 import OptimizedImage from '../../Utility/OptimizedImage';
 
 const Gallery = () => {
-  // Temporalmente usando la misma imagen para demostración
   const galleryImages = [
-    { id: 'gallery-1', src: galleryImage1, alt: 'Corte de cabello moderno y elegante' },
-    { id: 'gallery-2', src: galleryImage1, alt: 'Coloración y mechas naturales' },
-    { id: 'gallery-3', src: galleryImage1, alt: 'Peinado para ocasión especial' },
-    { id: 'gallery-4', src: galleryImage1, alt: 'Tratamiento capilar revitalizante' },
-    { id: 'gallery-5', src: galleryImage1, alt: 'Diseño de uñas exclusivo' },
-    { id: 'gallery-6', src: galleryImage1, alt: 'Estilo de cabello personalizado' },
-    { id: 'gallery-7', src: galleryImage1, alt: 'Balayage profesional' },
-    { id: 'gallery-8', src: galleryImage1, alt: 'Recogido elegante' }
+    { id: 'gallery-1', src: galleryImage1, alt: 'Estilismo profesional' },
+    { id: 'gallery-2', src: galleryImage2, alt: 'Diseño de uñas elegante' },
+    { id: 'gallery-3', src: galleryImage3, alt: 'Manicura tinto' },
+    { id: 'gallery-4', src: galleryImage4, alt: 'Uñas decoradas en rosa' },
+    { id: 'gallery-5', src: galleryImage5, alt: 'Diseño de uñas doradas' },
+    { id: 'gallery-6', src: galleryImage6, alt: 'Boutique de belleza' },
+    { id: 'gallery-7', src: galleryImage7, alt: 'Manicura profesional' },
+    { id: 'gallery-8', src: galleryImage8, alt: 'Maquillaje profesional' }
   ];
 
   return (
