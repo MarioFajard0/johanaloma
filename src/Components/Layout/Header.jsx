@@ -1,9 +1,8 @@
 import '../../Styles/Header.css';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Header = () => {
-  const location = useLocation();
   const logoVariants = {
     hidden: { opacity: 0, y: -20 },
     visible: { 
@@ -39,16 +38,12 @@ const Header = () => {
           <Link 
             to="/" 
             className="logo" 
-            onClick={(e) => {
-              // Si estamos en la página principal, prevenimos la navegación por defecto
-              // y hacemos scroll hacia arriba suavemente
-              if (location.pathname === '/') {
-                e.preventDefault();
-                window.scrollTo({
-                  top: 0,
-                  behavior: 'smooth'
-                });
-              }
+            onClick={() => {
+              // Siempre aseguramos que al hacer clic en el logo, la página principal
+              // se muestre desde arriba, independientemente de dónde vengamos
+              setTimeout(() => {
+                window.scrollTo(0, 0);
+              }, 0);
             }}
           >
             Johana Loma
